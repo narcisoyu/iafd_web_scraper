@@ -9,8 +9,8 @@ class IafdSpider(CrawlSpider):
 	#maybe need to change
 	item_count = 0
 	allowed_domain = ['iafd.com']
-	start_urls = ['http://iafd.com/astrology.rme/sign=Aries', 
-					'http://iafd.com/astrology.rme/sign=Taurus',
+	start_urls = ['http://iafd.com/astrology.rme/sign=Aries',
+				    'http://iafd.com/astrology.rme/sign=Taurus',
 					'http://iafd.com/astrology.rme/sign=Gemini',
 					'http://iafd.com/astrology.rme/sign=Cancer',
 					'http://iafd.com/astrology.rme/sign=Leo',
@@ -46,7 +46,11 @@ class IafdSpider(CrawlSpider):
 		#Iafditem_1['years_active'] = response.xpath('/html/body/div[1]/div[2]/div[1]/p[10]/text()').extract() 
 
 		#info actor's movie
-		names = response.xpath('//div[@class = "perficon"]//span[@class = "perfname"]')
+		#HEAD
+		names = response.xpath('/html/body/div[1]/div[1]/div/h1')
+
+#		names = response.xpath('//div[@class = "perficon"]//span[@class = "perfname"]')
+#>>>>>>> 7256e3180bda17391a612fe24ac52067deb234d2
 		for name in names:
 			Iafditem_1['names'] = name.xpath('//div[@class = "col-xs-12"]/h1/text()').extract() 
 			Iafditem_1['movie_title'] = name.xpath('//*[@id="personal"]/tbody/tr/td[1]/a').extract() 
@@ -54,6 +58,10 @@ class IafdSpider(CrawlSpider):
 			Iafditem_1['distributor'] = name.xpath('//*[@id="personal"]/tbody/tr/td[3]/a').extract() 
 			Iafditem_1['notes'] = name.xpath('//*[@id="personal"]/tbody/tr/td[4]/i').extract()
 			Iafditem_1['Formats'] = name.xpath('//*[@id="personal"]/tbody/tr/td[6]/a').extract() 
+			#print('*****************************************************')
+			#print(Iafditem_1)
+			#print(name)
+			#print('*****************************************************')
 		
 		self.item_count += 1
 		if self.item_count > 50:
