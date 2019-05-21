@@ -7,4 +7,4 @@ run spider and save csv: cd to the folder, and "scrapy crawler iafd -t csv"
 
 All comments and issues are welcome
 
-OPTION: run script directly in terminal or IDE.
+OPTION2: run script directly in terminal or IDE.
